@@ -24,11 +24,6 @@ def test_table(subject, locatie, data, prenume, nume, cnp, email, telefon, comme
     cursor.close()
     connection.close()
     return data
-    cursor.close()
-
-    connection.close()
-    print(data)
-    return data
 
 
 def data_testt():
@@ -56,30 +51,39 @@ def index() -> str:
 ##create an api route that takes the object variable writen up and is a post reuqest
 @app.route('/api/add', methods=['get'])
 def api_post():
-    object = request.args
-    subject = object['subject']
-    locatie = object['locatie']
-    data = object['data']
-    prenume = object['prenume']
-    nume = object['nume']
-    cnp = object['cnp']
-    email = object['email']
-    telefon = object['telefon']
-    comment = object['comment']
-    test_table(subject, locatie, data, prenume, nume, cnp,
-    email, telefon, comment)
-    
-    return jsonify({
-        "subject": subject,
-        "locatie": locatie,
-        "data": data,
-        "prenume": prenume,
-        "nume": nume,
-        "cnp": cnp,
-        "email": email,
-        "telefon": telefon,
-        "comment": comment
-    })
+    ##check for errors
+    if request.method == 'GET':
+        object = request.args
+        if 'prenume' not in object or 'nume' not in object or 'cnp' not in object :
+            return json.dumps({'error': 'Please fill in all the fields.'})
+        if 'email' not in object or 'telefon' not in object or 'comment' not in object:
+            return json.dumps({'error': 'Please fill in all the fields.'})
+        if 'subject' not in object or 'locatie' not in object or 'data' not in object :
+            return json.dumps({'error': 'Please fill in all the fields.'})
+        else:
+            subject = object['subject']
+            locatie = object['locatie']
+            data = object['data']
+            prenume = object['prenume']
+            nume = object['nume']
+            cnp = object['cnp']
+            email = object['email']
+            telefon = object['telefon']
+            comment = object['comment']
+            test_table(subject, locatie, data, prenume, nume, cnp,
+            email, telefon, comment)
+            
+            return jsonify({
+                "subject": subject,
+                "locatie": locatie,
+                "data": data,
+                "prenume": prenume,
+                "nume": nume,
+                "cnp": cnp,
+                "email": email,
+                "telefon": telefon,
+                "comment": comment
+            })
 
 
 ##endpoint that is getting a post request with a tag color and is created a color pallet
