@@ -110,7 +110,7 @@
         if ( $('.product_select').length ){ 
             $('select').niceSelect();
         };
-    }; 
+    };
     /*Function Calls*/  
     verificationForm ();
     phoneNoselect ();

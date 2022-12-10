@@ -326,6 +326,7 @@
   margin: 5px;
   text-transform: uppercase;
   display: inline-block;
+  padding: 1%;
 }
 .multi_step_form #msform .action-button:hover, .multi_step_form #msform .action-button:focus {
   background: #405867;
@@ -399,9 +400,13 @@ section.multi_step_form {
   width: 100%;
 }
 
+.to_left {
+  text-align: left !important;
+}
+
 @media (max-width: 750px) {
   .current {
-    margin-left: -19px;
+    margin-left: -13px;
   }
 
   .in2 {
