@@ -48,7 +48,7 @@
 .multi_step_form #msform fieldset h6 {
   font: 400 15px/28px "Roboto", sans-serif;
   color: #5f6771;
-  padding-bottom: 30px;
+  padding-bottom: 8%;
 }
 .multi_step_form #msform fieldset .intl-tel-input {
   display: block;
@@ -88,7 +88,7 @@
   overflow: hidden;
 }
 .multi_step_form #msform fieldset .fg_3 {
-  padding-bottom: 70px;
+  padding-bottom: 40px;
 }
 .multi_step_form #msform fieldset .form-control, .multi_step_form #msform fieldset .product_select {
   border-radius: 3px;
@@ -176,12 +176,12 @@
   text-align: center;
   line-height: 1;
 }
-.multi_step_form #msform fieldset .passport {
+.multi_step_form #msform fieldset .passport .search_loc .date_loc{
   margin-top: -10px;
   padding-bottom: 30px;
   position: relative;
 }
-.multi_step_form #msform fieldset .passport .don_icon {
+.multi_step_form #msform fieldset .passport .search_loc .don_icon .date_loc{
   height: 36px;
   width: 36px;
   line-height: 36px;
@@ -260,10 +260,10 @@
   list-style-type: none;
   color: #99a2a8;
   font-size: 9px;
-  width: calc(100%/3);
+  width: calc(100%/5);
   float: left;
   position: relative;
-  font: 500 13px/1 "Roboto", sans-serif;
+  font: 500 11px/1 "Roboto", sans-serif;
 }
 .multi_step_form #msform #progressbar li:nth-child(2):before {
   content: "";
@@ -274,8 +274,8 @@
 .multi_step_form #msform #progressbar li:before {
   content: "";
   font: normal normal normal 30px/50px Ionicons;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   line-height: 50px;
   display: block;
   background: #eaf0f4;
@@ -328,4 +328,56 @@
   background: #405867;
   border-color: #405867;
   color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.in {
+  margin-bottom: 1% !important;
+}
+
+.in2 {
+  margin-bottom: 10% !important;
+  margin-top: 2% !important;
+}
+
+section.multi_step_form {
+  height: 100% !important;
+}
+
+.button {
+  margin-bottom: 4% !important;
 }

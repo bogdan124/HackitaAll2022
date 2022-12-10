@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>CodePen - Bootstrap Multi step form with progress bar</title>
+  <link rel="stylesheet" href="css/links/normalize.min.css">
+  <link rel='stylesheet' href="css/links/bootstrap.css">
+  <link rel='stylesheet' href="css/links/intlTelInput.css">
+  <link rel='stylesheet' href="css/links/ionicons.css">
+  <link rel='stylesheet' href="css/links/nice-select.mic.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <!-- Multi step form -->
+  <section class="multi_step_form">
+    <form id="msform">
+      <!-- Tittle -->
+      <div class="tittle">
+        <h2>Programare vizita la BCR</h2>
+        <p>In order to use this service, you have to complete this verification process</p>
+      </div>
+      <!-- progressbar -->
+      <ul id="progressbar">
+        <li class="active">Despre ce vrei sa vorbim?</li>
+        <li>Alege unitatea BCR si ziua vizitei</li>
+        <li>Introdu datele</li>
+        <li>Valideaza telefonul</li>
+        <li>Sumarul programarii</li>
+      </ul>
+      <!-- fieldsets -->
+      <fieldset>
+        <button type="button" class="action-button  previous_button">Back</button>
+        <button type="button" class="next action-button">Continue</button>
+      </fieldset>
+
+      <fieldset>
+      
+        <button type="button" class="action-button previous previous_button">Back</button>
+        <button type="button" class="next action-button">Continue</button>
+   
+      </fieldset>
+      <fieldset>
+       
+        <button type="button" class="action-button previous previous_button">Back</button>
+        <button type="button" class="next action-button">Continue</button>
+      </fieldset>
+
+      <fieldset>
+        <h3>In ce locatie ne vizitezi ?</h3>
+        <h6>Cauta unitatea BCR unde programezi vizita sau permite accesul la localizare
+          si alege o unitate langa tine
+        </h6>
+        
+         <div class="fg_2"> 
+           <input type="text" class="form-control" placeholder="Nume unitate / Adresa / Zona:"> 
+         </div> 
+
+        <h3>In ce zi ne vizitezi ?</h3>
+        <h6>Alege data si intervalul orar pentru vizita la BCR.
+
+        <div>
+         <input type="date" class="in2" id="start" name="trip-start"
+                    value="2022-12-10"
+                    min="2022-12-10" max="2023-12-31"> 
+        </div>
+        <button type="button" class="action-button previous previous_button">Back</button>
+        <button type="button" class="next action-button">Continue</button>
+      </fieldset>   
+      
+      
+      <fieldset>
+        <h3>Salut, cum te numesti?</h3>
+        <h6>Haide sa ne cunoastem. Introdu numele si prenumele
+          de familie.
+        </h6>
+        <div class="form-group fg_2">
+          <input type="text" class="form-control" placeholder="Prenume:">
+        </div>
+        <div class="form-group fg_2">
+          <input type="text" class="form-control" placeholder="Nume de familie:">
+        </div>
+        <div class="form-group fg_2">
+          <input type="text" class="form-control" placeholder="Cod Numeric Personal:">
+        </div>
+        <div class="form-group">
+          <select class="product_select">
+            <option data-display="1. Choose A Question">1. Choose A Question</option>
+            <option>2. Choose A Question</option>
+            <option>3. Choose A Question</option>
+          </select>
+        </div>
+        <div class="form-group fg_3">
+          <input type="text" class="form-control" placeholder="Anwser here:">
+        </div> 
+        <button type="button" class="action-button previous previous_button">Back</button> 
+        <a href="#" class="action-button">Finish</a> 
+      </fieldset>
+
+      
+  
+    
+    </form>
+  </section>
+  <!-- End Multi step form -->
+  <!-- partial -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.min.js"></script>
+  <script src="js/intlTelInput.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/jquery.nice-select.min.js"></script>
+  <script src="js/script.js"></script>
+
+</body>
+
+</html>
