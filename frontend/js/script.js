@@ -34,7 +34,7 @@
                     opacity = 1 - now;
                     current_fs.css({
                         'transform': 'scale(' + scale + ')',
-                        'position': 'absolute'
+                       // 'position': 'absolute'
                     });
                     next_fs.css({
                         'left': left,

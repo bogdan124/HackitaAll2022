@@ -24,12 +24,13 @@
   <form id="msform"> 
     <!-- Tittle -->
     <div class="tittle">
-      <h2>Verification Process</h2>
-      <p>In order to use this service, you have to complete this verification process</p>
+      <!-- <h2>Verification Process</h2>
+      <p>In order to use this service, you have to complete this verification process</p> -->
+      <img src="images/BCR_logo.png" alt="BCR_logo" width="101" height="37">
     </div>
     <!-- progressbar -->
     <ul id="progressbar">
-      <li class="active">Despre ce vrei sa vorbim?</li>
+      <li class="active">Scopul vizitei</li>
       <li>Alege unitatea BCR si ziua vizitei</li>
       <li>Introdu datele</li>
       <li>Valideaza telefonul</li>
@@ -37,6 +38,20 @@
     </ul>
     <!-- fieldsets -->
     <fieldset>
+      <h3>Despre ce vrei sa vorbim? </h3>
+      <h6>Alege un motiv pentru care programezi vizita in unitate.
+      </h6>
+
+      <div class="form-group">
+        <select class="product_select in2">
+          <option data-display="Apasa pentru a selecta">Depunere sau retragere numerar</option>
+          <option>Operatiune fara numerar</option>
+          <option>Credit</option>
+          <option>Economisire</option>
+          <option>Asigurare</option>
+        </select>
+      </div>
+
       <button type="button" class="action-button previous_button">Back</button>
       <button type="button" class="next action-button">Continue</button>  
     </fieldset>
