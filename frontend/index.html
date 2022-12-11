@@ -43,7 +43,7 @@
       </h6>
 
       <div class="form-group">
-        <select class="product_select in2">
+        <select id="scop" class="product_select in2">
           <option data-display="Apasa pentru a selecta">Depunere sau retragere numerar</option>
           <option>Operatiune fara numerar</option>
           <option>Credit</option>
@@ -109,7 +109,7 @@
         <input type="text" id="mail" class="form-control" placeholder="nume@exemplu.ro">
       </div>
       <div class="form-group fg_2">
-        <input type="text" id="phone" class="form-control" placeholder="0721 345 678">
+        <input type="text" id="phone_nr" class="form-control" placeholder="07334455223">
       </div>
 
       <div class="to_left">
@@ -153,36 +153,30 @@
       <h6>Confirma daca datele de mai jos sunt corecte.</h6> 
 
       <div class="form-group fg_2 form-control">
-        <div class="to_left">
-          <h6>Nume Complet</h6> 
-          <div id="out_prenume">
-          </div>
-        </div>
+        <div class="hdr">Scopul intalnirii</div> 
+        <div class="to_left" id="out_scop"></div>
         <hr>
-        <!-- <div id="out_nume">
-        </div> -->
+
+        <div class="hdr">Nume Complet</div> 
+        <div class="to_left" id="out_nume"></div>
         <hr>
-        <div id="out_locatie">
-        </div>
+
+        <div class="hdr">Locatie</div> 
+        <div class="to_left" id="out_locatie"></div>
         <hr>
-        <div id="out_cnp">
-        </div>
+
+        <div class="hdr">Data si intervalul orar</div> 
+        <div class="to_left" id="out_start"></div>
         <hr>
-        <div id="out_mail">
-        </div>
+
+        <div class="hdr">Date de contact</div> 
+        <div class="to_left" id="out_mail"></div>
         <hr>
-        <div id="out_phone">
-        </div>
+        <div class="to_left" id="out_phone"></div>
+        <hr>
     </div>
 
       <button type="button" class="action-button previous previous_button">Back</button> 
-
-      <script>
-        // const prenume = document.querySelector('prenume');
-      
-        console.log(nume);
-
-      </script>
 
       <div class="form-group fg_2">
         <script>
@@ -192,13 +186,17 @@
             const locatie = document.getElementById('locatie').value;
             const cnp = document.getElementById('cnp').value;
             const mail = document.getElementById('mail').value;
-            const phone = document.getElementById('phone').value;
-            document.getElementById('out_prenume').innerHTML=nume + " " + prenume;
-            // document.getElementById('out_nume').innerHTML=nume;
+            const phone_nr = document.getElementById('phone_nr').value;
+            const start = document.getElementById('start').value;
+            const scop = document.getElementById('scop').value;
+            console.log(scop);
+            console.log(cnp);
+            document.getElementById('out_nume').innerHTML=nume + " " + prenume;
             document.getElementById('out_locatie').innerHTML=locatie;
-            document.getElementById('out_cnp').innerHTML=cnp;
             document.getElementById('out_mail').innerHTML=mail;
-            document.getElementById('out_phone').innerHTML=phone;
+            document.getElementById('out_phone').innerHTML=phone_nr;
+            document.getElementById('out_start').innerHTML=start;
+            document.getElementById('out_scop').innerHTML=scop;
 
           }
           </script>
