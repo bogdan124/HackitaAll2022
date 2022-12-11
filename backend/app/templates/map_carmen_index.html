@@ -100,9 +100,9 @@
 
     <div id="mymap"> </div>
     <div class="button-group flex-style">
-        <!--<div class="component1">
+        <div class="component1">
             <button class="map-zoom-out-btn"> Map Zoom Out </button>
-        </div>-->
+        </div>
         <div class="component2">
             <select class="select-dropdown" name="dropdown">
                 <option> Select any monument </option>
@@ -185,7 +185,7 @@
 
 
         document.querySelector(".map-zoom-out-btn").addEventListener('click', () => {
-            map.flyTo([latitude, longitude], 14);
+            map.flyTo([44.4401622, 26.0506765], 14);
         });
 
         document.querySelector(".search-btn").addEventListener('click', () => {
