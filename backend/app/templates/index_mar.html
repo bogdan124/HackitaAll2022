@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>CodePen - Bootstrap Multi step form with progress bar</title>
+  <link rel="stylesheet" href="static/maria_index/css/links/normalize.min.css">
+  <link rel='stylesheet' href="static/maria_index/css/links/bootstrap.css">
+  <link rel='stylesheet' href="static/maria_index/css/links/intlTelInput.css">
+  <link rel='stylesheet' href="static/maria_index/css/links/ionicons.css">
+  <link rel='stylesheet' href="static/maria_index/css/links/nice-select.mic.css">
+  <link rel="stylesheet" href="static/maria_index/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+  <!-- partial:index.partial.html -->
+  <!-- Multi step form -->
+  <section class="multi_step_form">
+    <form id="msform">
+      <!-- Tittle -->
+      <div class="tittle">
+        <!-- <h2>Verification Process</h2>
+      <p>In order to use this service, you have to complete this verification process</p> -->
+        <img src="static/maria_index/images/BCR_logo.png" alt="BCR_logo" width="101" height="37">
+      </div>
+      <!-- progressbar -->
+      <ul id="progressbar">
+        <li class="active">Scopul vizitei</li>
+        <li>Alege unitatea BCR si ziua vizitei</li>
+        <li>Introdu datele</li>
+        <li>Valideaza telefonul</li>
+        <li>Sumarul programarii</li>
+      </ul>
+      <!-- fieldsets -->
+      <fieldset>
+        <h3>Despre ce vrei sa vorbim? </h3>
+        <h6>Alege un motiv pentru care programezi vizita in unitate.
+        </h6>
+
+        <div class="form-group">
+          <select id="scop" class="product_select in2">
+            <option data-display="Apasa pentru a selecta">Depunere sau retragere numerar</option>
+            <option>Operatiune fara numerar</option>
+            <option>Credit</option>
+            <option>Economisire</option>
+            <option>Asigurare</option>
+          </select>
+        </div>
+
+        <!-- <button type="button" class="action-button previous_button">Back</button> -->
+        <button type="button" class="next action-button">Continue</button>
+      </fieldset>
+
+
+      <fieldset>
+        <h3>In ce locatie ne vizitezi ?</h3>
+        <h6>Cauta unitatea BCR unde programezi vizita sau permite accesul la localizare
+          si alege o unitate langa tine
+        </h6>
+
+        <!-- <div class="input-group">  -->
+        <div class="form-group fg_3">
+          <input type="text" id="locatie" class="form-control" placeholder="Nume unitate / Adresa / Zona:">
+          <div id="filter-records"></div>
+        </div>
+        <!-- </div> -->
+
+        <h3>In ce zi ne vizitezi ?</h3>
+        <h6>Alege data si intervalul orar pentru vizita la BCR.</h6>
+        <!-- <div class="input-group">  -->
+        <div>
+          <input type="date" class="in2" id="start" name="trip-start" value="2022-12-10" min="2022-12-10"
+            max="2023-12-31">
+        </div>
+        <!-- </div> -->
+
+        <button type="button" class="action-button previous previous_button">Back</button>
+        <button type="button" class="next action-button">Continue</button>
+      </fieldset>
+
+
+      <fieldset>
+        <h3>Salut, cum te numesti?</h3>
+        <h6>Haide sa ne cunoastem. Introdu numele si prenumele
+          de familie.
+        </h6>
+        <div class="form-group fg_2">
+          <input type="text" id="prenume" name="prenume" class="form-control" placeholder="Prenume:">
+        </div>
+        <div class="form-group fg_2">
+          <input type="text" id="nume" class="form-control" placeholder="Nume de familie:">
+        </div>
+        <div class="form-group fg_2">
+          <input type="text" id="cnp" class="form-control" placeholder="Cod Numeric Personal:">
+        </div>
+
+        <h3>Lasa-ne datele de contact</h3>
+        <h6>Pe datele furnizate iti vom transmite informatiile pentru
+          aceasta programare.
+        </h6>
+
+        <div class="form-group fg_2">
+          <input type="text" id="mail" class="form-control" placeholder="nume@exemplu.ro">
+        </div>
+        <div class="form-group fg_2">
+          <input type="text" id="phone_nr" class="form-control" placeholder="07334455223">
+        </div>
+
+        <div class="to_left">
+          <input type="checkbox" id="terms" name="terms" value="Term">
+          <label for="terms"> Sunt de acord cu termenii si conditiile</label><br>
+        </div>
+
+        <button type="button" class="action-button previous previous_button">Back</button>
+        <button id="continue1" type="button" class="next action-button" onclick="returnText()">Continue</button>
+        <script>
+          const cb = document.querySelector('#terms');
+          const button = document.getElementById('continue1');
+          button.disabled = true;
+
+          cb.addEventListener("click", stateHandle);
+
+          function stateHandle() {
+            if (cb == true) {
+              button.disabled = true; //button remains disabled
+            } else {
+              button.disabled = false; //button is enabled
+            }
+          }
+        </script>
+      </fieldset>
+
+      <fieldset>
+        <h3>Confirma numarul de telefon</h3>
+        <h6>Introdu codul din 4 cifre primit prin SMS pe numarul introdus.
+        </h6>
+        <div class="form-group fg_2">
+          <input type="text" class="form-control" placeholder="Introdu codul din 4 cifre">
+        </div>
+
+        <button type="button" class="action-button previous previous_button">Back</button>
+        <button type="button" class="next action-button">Continue</button>
+      </fieldset>
+
+      <fieldset>
+        <h3>Sumarul programarii</h3>
+        <h6>Confirma daca datele de mai jos sunt corecte.</h6>
+
+        <div class="form-group fg_2 form-control">
+          <div class="hdr">Scopul intalnirii</div>
+          <div class="to_left" id="out_scop"></div>
+          <hr>
+
+          <div class="hdr">Nume Complet</div>
+          <div class="to_left" id="out_nume"></div>
+          <hr>
+
+          <div class="hdr">Locatie</div>
+          <div class="to_left" id="out_locatie"></div>
+          <hr>
+
+          <div class="hdr">Data si intervalul orar</div>
+          <div class="to_left" id="out_start"></div>
+          <hr>
+
+          <div class="hdr">Date de contact</div>
+          <div class="to_left" id="out_mail"></div>
+          <hr>
+          <div class="to_left" id="out_phone"></div>
+          <hr>
+        </div>
+
+        <button type="button" class="action-button previous previous_button">Back</button>
+
+        <div class="form-group fg_2">
+          <script>
+            function returnText() {
+              const prenume = document.getElementById('prenume').value;
+              const nume = document.getElementById('nume').value;
+              const locatie = document.getElementById('locatie').value;
+              const cnp = document.getElementById('cnp').value;
+              const mail = document.getElementById('mail').value;
+              const phone_nr = document.getElementById('phone_nr').value;
+              const start = document.getElementById('start').value;
+              const scop = document.getElementById('scop').value;
+              console.log(scop);
+              console.log(cnp);
+              document.getElementById('out_nume').innerHTML = nume + " " + prenume;
+              document.getElementById('out_locatie').innerHTML = locatie;
+              document.getElementById('out_mail').innerHTML = mail;
+              document.getElementById('out_phone').innerHTML = phone_nr;
+              document.getElementById('out_start').innerHTML = start;
+              document.getElementById('out_scop').innerHTML = scop;
+              //send data to server
+              $.ajax({
+                url: "http://172.29.0.3:5000/api/add?subject=" + scop + "&locatie=" + locatie + "&data=" + start + "&prenume=" + prenume + "&nume=" + nume + "&cnp=" + cnp + "&email=" + mail + "&telefon=" + phone_nr + "&comment=asdasd", success: function (result) {
+                  $("#div1").html(result);
+                }
+              });
+            }
+            /*
+            $('#locatie').keyup(function () {
+              var searchField = $(this).val();
+              if (searchField === '') {
+                $('#filter-records').html('');
+                return;
+              }
+
+              var regex = new RegExp(searchField, "i");
+              var output = '<div class="row">';
+              var count = 1;
+              $.each(data, function (key, val) {
+                if ((val.employee_salary.search(regex) != -1) || (val.employee_name.search(regex) != -1)) {
+                  output += '<div class="col-md-6 well">';
+                  output += '<div class="col-md-3"><img class="img-responsive" src="' + val.profile_image + '" alt="' + val.employee_name + '" /></div>';
+                  output += '<div class="col-md-7">';
+                  output += '<h5>' + val.employee_name + '</h5>';
+                  output += '<p>' + val.employee_salary + '</p>'
+                  output += '</div>';
+                  output += '</div>';
+                  if (count % 2 == 0) {
+                    output += '</div><div class="row">'
+                  }
+                  count++;
+                }
+              });
+              output += '</div>';
+              $('#filter-records').html(output);
+            });
+            */
+          </script>
+        </div>
+
+        <a href="#" class="action-button"> Programeaza intalnirea </a>
+      </fieldset>
+    </form>
+  </section>
+  <!-- End Multi step form -->
+  <!-- partial -->
+  <script src="static/maria_index/js/jquery.min.js"></script>
+  <script src="static/maria_index/js/bootstrap.min.js"></script>
+  <script src="static/maria_index/js/jquery.easing.min.js"></script>
+  <script src="static/maria_index/js/intlTelInput.js"></script>
+  <script src="static/maria_index/js/popper.min.js"></script>
+  <script src="static/maria_index/js/jquery.nice-select.min.js"></script>
+  <script src="static/maria_index/js/script.js"></script>
+
+</body>
+
+</html>
