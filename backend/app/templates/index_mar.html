@@ -14,6 +14,13 @@
   <link rel='stylesheet' href="static/maria_index/css/links/nice-select.mic.css">
   <link rel="stylesheet" href="static/maria_index/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
 
 </head>
 
@@ -25,7 +32,7 @@
       <!-- Tittle -->
       <div class="tittle">
         <!-- <h2>Verification Process</h2>
-      <p>In order to use this service, you have to complete this verification process</p> -->
+       <p>In order to use this service, you have to complete this verification process</p> -->
         <img src="static/maria_index/images/BCR_logo.png" alt="BCR_logo" width="101" height="37">
       </div>
       <!-- progressbar -->
@@ -64,11 +71,206 @@
         </h6>
 
         <!-- <div class="input-group">  -->
-        <div class="form-group fg_3">
-          <input type="text" id="locatie" class="form-control" placeholder="Nume unitate / Adresa / Zona:">
-          <div id="filter-records"></div>
+        <!-- <div class="form-group fg_3"> 
+           <input type="text" id="locatie" class="form-control" placeholder="Nume unitate / Adresa / Zona:"> 
+ 
+         </div> -->
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <div class="searchable">
+          <input type="text" id="locatie" placeholder="Nume unitate / Adresa / Zona:"
+            onkeyup="filterFunction(this,event)">
+          <ul>
+            <li>BCR Calarasi ( Strada Prelungirea Bucuresti, nr. 6, bl. N1, parter, Calarasi, Calarasi)</li>
+            <li>BCR Alba ( Str. Tudor Vladimirescu, nr.1, Alba-Iulia, judetul Alba, Alba Iulia, Alba)</li>
+            <li>BCR Campeni ( Piata Avram Iancu nr.8, Campeni, Alba)</li>
+            <li>BCR Adjud ( Strada Republicii nr. 28 bl. 85 parter., Adjud, Vrancea)</li>
+            <li>BCR Braila ( Calea Calarasilor, nr.53, Braila, Braila)</li>
+            <li>BCR Nicu Circiumarescu ( Bulevardul Mircea cel Batran nr.1, Targoviste, Dambovita)</li>
+            <li>BCR Caracal ( Strada N.Titulescu nr. 13, Caracal, Olt)</li>
+            <li>BCR Corabia ( Strada Tudor Vladimirescu Bl 1, Corabia, Olt)</li>
+            <li>BCR Olt ( Strada Basarabilor nr. 1, Slatina, Olt)</li>
+            <li>BCR Salaj ( Strada Simion-Oros nr.4, Zalau, Salaj)</li>
+            <li>BCR Simleul Silvaniei ( Strada 1 Decembrie nr. 1918 Bl. D 1 parter, Simleu Silvaniei, Salaj)</li>
+            <li>BCR Lugoj ( Strada Cuza Voda nr. 4, Lugoj, Timis)</li>
+            <li>BCR Serban Voda ( Calea Serban Voda nr.209, Bucuresti, Sector 4)</li>
+            <li>BCR Aiud ( Strada Transilvaniei Bl. A 13, Aiud, Alba)</li>
+            <li>BCR Cugir ( Strada Alexandru Sahia nr.23 Bl.S 6 bc, Cugir, Alba)</li>
+            <li>BCR Sebes ( Strada Mihai Viteazu nr.2, Sebes, Alba)</li>
+            <li>BCR Borsa ( Strada Decebal nr. 4 Bl. A1, Borsa, Maramures)</li>
+            <li>BCR Iza ( Bulevardul Republicii nr. 15, Baia Mare, Maramures)</li>
+            <li>BCR Maramures ( str. Culturii, nr.3, Baia Mare, judetul Maramures, Baia Mare, Maramures)</li>
+            <li>BCR Sighetu Marmatiei ( Piata 1 Decembrie 1918 nr.23, Sighetu Marmatiei, jud Maramures, Sighetu
+              Marmatiei, Maramures)</li>
+            <li>BCR Campia Turzii ( Strada George Cosbuc nr.13, CampiaTurzii, Cluj)</li>
+            <li>BCR Cipariu ( Strada Nicolae Titulescu nr.4 Bl. IIB Corp B3 parter, Cluj Napoca, Cluj)</li>
+            <li>BCR Huedin ( Strada Republicii nr.8 bloc A S.C.2 parter, Huedin, Cluj)</li>
+            <li>BCR Manastur ( Strada Bucegi nr.13-15, Cluj Napoca, Cluj)</li>
+            <li>BCR Turda ( Piata 1 Decembrie 1918 nr.29, Turda, Cluj)</li>
+            <li>BCR Cluj ( Bulevardul 21 Decembrie 1989, nr.77 (The Office, cladirea A-B), Cluj Napoca, Cluj)</li>
+            <li>BCR Dej ( Strada Bobalna nr.5, Dej, Cluj)</li>
+            <li>BCR Beclean ( Strada Mihail Kogalniceanu nr.46, Beclean, Bistrita-Nasaud)</li>
+            <li>BCR Bistrita Nasaud ( Piata Petru Rares nr.17, Bistrita, Bistrita, Bistrita-Nasaud)</li>
+            <li>BCR Nasaud ( Bulevardul Granicerilor nr.27, Nasaud, Bistrita-Nasaud)</li>
+            <li>BCR Viisoara ( Strada Imparatul Traian nr.57 bloc E parter, Bistrita, Bistrita-Nasaud)</li>
+            <li>BCR Vrancea ( Strada Fundatura Cuza Voda nr. 1, Focsani, Vrancea)</li>
+            <li>BCR Bacau ( Strada 9 Mai nr.11, Bacau, Bacau)</li>
+            <li>BCR Bacovia ( Strada Mioritei nr.1, Bacau, Bacau)</li>
+            <li>BCR Comanesti ( Strada Republicii nr.18, Comanesti, Bacau)</li>
+            <li>BCR Moinesti ( Strada Zorilor nr.23, Moinesti, Bacau)</li>
+            <li>BCR Onesti ( Strada Belvedere nr.1, Onesti, Bacau)</li>
+            <li>BCR Pacurari ( Soseaua Pacurari nr.137 Bl.600 parter, Iasi, Iasi)</li>
+            <li>BCR Pascani ( Strada St.cel Mare nr. 5, Pascani, Iasi)</li>
+            <li>BCR Podu Iloaiei ( Strada Nationala Bl.14 parter, Comuna Podu Iloaiei, Iasi)</li>
+            <li>BCR A. I. Cuza ( Bulevardul Stefan cel Mare si Sfant nr.8 Bl.A, Iasi, Iasi)</li>
+            <li>BCR Iasi ( Strada Palat nr. 11, Iasi, Iasi)</li>
+            <li>BCR Botosani ( Piata Revolutiei nr.9, Botosani, Botosani)</li>
+            <li>BCR Dorohoi ( Strada Grigore Ghica nr.30, Dorohoi, Botosani)</li>
+            <li>BCR Primaverii ( Strada Primaverii nr.16, Botosani, Botosani)</li>
+            <li>BCR Campulung Moldovenesc ( Calea Transilvaniei nr. 6, Campulung Moldovenesc, Suceava)</li>
+            <li>BCR Falticeni ( Strada Sucevei, Falticeni, Suceava)</li>
+            <li>BCR Gura Humorului ( Strada Republicii nr. 19 Bl. T 850 parter, Gura Humorului, Suceava)</li>
+            <li>BCR Radauti ( Strada Unirii nr. 65, Radauti, Suceava)</li>
+            <li>BCR Suceava ( Strada Stefan cel Mare nr. 31, Suceava, Suceava)</li>
+            <li>BCR Vatra Dornei ( Strada M.Eminescu nr. 35, Vatra Dornei, Suceava)</li>
+            <li>BCR Bicaz ( Strada Barajului nr. 2A, Bicaz, Neamt)</li>
+            <li>BCR Neamt ( Bulevardul Traian nr. 19, Piatra Neamt, Neamt)</li>
+            <li>BCR Roman ( Bulevardul Roman Musat nr.34, Roman, Neamt)</li>
+            <li>BCR Targu Neamt ( Strada Mihail Kogalniceanu nr. 4, Targu Neamt, Neamt)</li>
+            <li>BCR Babadag ( Strada Republicii nr.88 parter, Babadag, Tulcea)</li>
+            <li>BCR Macin ( Strada 1 Decembrie nr. 10 Bl. 17, Macin, Tulcea)</li>
+            <li>BCR Sulina ( Strada a II a nr. 274, Sulina, Tulcea)</li>
+            <li>BCR Tulcea ( Strada Toamnei nr. 2, Tulcea, Tulcea)</li>
+            <li>BCR Lehliu Gara ( Strada Nicolae Titulescu nr.5D, Lehliu Gara, Calarasi)</li>
+            <li>BCR Oltenita ( Bulevardul Republicii nr.56, Oltenita, Calarasi)</li>
+            <li>BCR Fetesti ( Strada Calarasi nr. 550, Fetesti, Ialomita)</li>
+            <li>BCR Ialomita ( Strada Matei Basarab Bl. D6 scara B parter, Slobozia, Ialomita)</li>
+            <li>BCR Tandarei ( Strada Bucuresti Bl. 57F parter, Tandarei, Ialomita)</li>
+            <li>BCR Urziceni ( Calea Bucuresti nr. 42, Urziceni, Ialomita)</li>
+            <li>BCR Cernavoda ( Strada Unirii Bl. P3B parter, Cernavoda, Constanta)</li>
+            <li>BCR Medgidia ( Strada Republicii nr.51, Medgidia, Constanta)</li>
+            <li>BCR Palas ( Strada I.C.Bratianu nr.98 Bl.SR3, Constanta, Constanta)</li>
+            <li>BCR Constanta ( Strada Traian nr.68, Constanta, Constanta)</li>
+            <li>BCR Mamaia ( Bulevardul Mamaia nr.231, Constanta, Constanta)</li>
+            <li>BCR Mangalia ( Soseaua Constanta nr.25, Mangalia, Constanta)</li>
+            <li>BCR Navodari ( Strada Albinelor nr.9 Bl.B2 sc.A parter, Navodari, Constanta)</li>
+            <li>BCR Panait Istrati ( Soseaua Buzaului bloc B1 parter, Braila, Braila)</li>
+            <li>BCR Buzau ( Strada Unirii nr.207, Buzau, Buzau)</li>
+            <li>BCR Ramnicu Sarat ( Strada T.Vladimirescu nr.10, Ramnicu Sarat, Buzau)</li>
+            <li>BCR Galati ( Strada Brailei Nr.88, Bl.BR5B, parter, Galati, Galati)</li>
+            <li>BCR Port ( Strada Portului nr.25 Bl. Siret 4 Sc.9 parter, Galati, Galati)</li>
+            <li>BCR Tecuci ( Strada 1 Decembrie 1918 nr.55, Tecuci, Galati)</li>
+            <li>BCR Traian ( Strada Traian Bl.A9 parter, Galati, Galati)</li>
+            <li>BCR Barlad ( Strada Republicii nr. 252, Barlad, Vaslui)</li>
+            <li>BCR Husi ( Strada Al.I.Cuza nr. 3, Husi, Vaslui)</li>
+            <li>BCR Negresti ( Strada Unirii nr. 1 B, Negresti, Vaslui)</li>
+            <li>BCR Vaslui ( Strada Stefan cel Mare nr. 53, Vaslui, Vaslui)</li>
+            <li>BCR Campina ( Bulevardul Carol I nr. 31, Campina, Prahova)</li>
+            <li>BCR Partizani ( Soseaua Nordului, nr.1 parter, Ploiesti, Prahova)</li>
+            <li>BCR Cantacuzino ( Strada Ghe. Gr. Cantacuzino nr. 193, Ploiesti, Prahova)</li>
+            <li>BCR Ploiesti Sud ( Strada Mihai Eminescu nr. 28 A, Ploiesti, Prahova)</li>
+            <li>BCR Valenii de Munte ( Strada Berevoiesti nr. 6, Valenii de Munte, Prahova)</li>
+            <li>BCR Prahova ( Piata Victoriei nr. 1, Ploiesti, Prahova, Ploiesti, Prahova)</li>
+            <li>BCR Arges ( Strada Republicii nr.83, Pitesti, Arges)</li>
+            <li>BCR Exercitiu ( Strada Exercitiu bloc.D15, Pitesti, Arges)</li>
+            <li>BCR Pitesti ( Strada Mircea Eliade nr.10, Pitesti, Arges)</li>
+            <li>BCR Campulung Muscel ( Strada Istrate Rizeanu nr.4, Campulung, Arges)</li>
+            <li>BCR Curtea de Arges ( Bulevardul Basarabilor nr.97, Curtea de Arges, Arges)</li>
+            <li>BCR Dacia ( Bulevardul Dacia Bl L10. Parter, Mioveni, Arges)</li>
+            <li>BCR Rosiorii de Vede ( Strada Rahovei nr. 106, Rosiorii de Vede, Teleorman)</li>
+            <li>BCR Teleorman ( Strada Dunarii nr. 137, Alexandria, Teleorman)</li>
+            <li>BCR Turnu Magurele ( Strada Gen. David Praporgescu Bl. G6 parter, Turnu Magurele, Teleorman)</li>
+            <li>BCR Gaesti ( Strada 13 Decembrie nr.62, Gaesti, Dambovita)</li>
+            <li>BCR Moreni ( Strada Cpt.Pantea Ion nr.62, Moreni, Dambovita)</li>
+            <li>BCR Pucioasa ( Strada Republicii nr.105, Pucioasa, Dambovita)</li>
+            <li>BCR Titu ( Strada I.C.Visarion nr.8, Titu, Dambovita)</li>
+            <li>BCR Bolintin Vale ( Strada Republicii Bl.B5 Sc.A parter, Con. Bolintin Vale, Giurgiu)</li>
+            <li>BCR Giurgiu ( Strada Vlad Ţepes nr.14 Bl. MUV 3, Giurgiu, Giurgiu)</li>
+            <li>BCR Gorj ( Strada Geneva nr.2, Targu Jiu, Gorj)</li>
+            <li>BCR Motru ( Bulevardul Trandafirilor nr. 7C parter, Motru, Gorj)</li>
+            <li>BCR Rovinari ( Strada Minerilor nr.9 Bl.L1 parter, Rovinari, Gorj)</li>
+            <li>BCR Victoria Gorj ( Strada Victoriei Bl. 194 parter, Targu Jiu, Gorj)</li>
+            <li>BCR Dolj ( Strada Olteţ nr.4, Craiova, Dolj)</li>
+            <li>BCR Filiasi ( Bulevardul Racoteanu nr.162 Bl. I 2 parter si Str.Stadionului Bl. I 1 parter, Filiasi,
+              Dolj)</li>
+            <li>BCR Calafat ( Strada Tudor Vladimirescu nr.26, Calafat, Dolj)</li>
+            <li>BCR Mehedinti ( Strada Aurelian nr. 44, Drobeta Turnu Severin, Mehedinti)</li>
+            <li>BCR Orsova ( Bulevardul Portile de Fier, nr. 3, Orsova, judet Mehedinti, Orsova, Mehedinti)</li>
+            <li>BCR Bals ( Strada N.Balcescu nr. 186 A, Bals, Olt)</li>
+            <li>BCR Valcea ( Strada Gen. Magheru nr. 20, Ramnicu Valcea, Valcea)</li>
+            <li>BCR Dragasani ( Strada Decebal nr. 2 Bl. G, Dragasani, Valcea)</li>
+            <li>BCR Horezu ( Strada Tudor Vladimirescu nr. 83 Bl. R2 parter, Horezu, Valcea)</li>
+            <li>BCR Arad ( Strada Nelu Aristide Dragomir nr.14-16, Arad, Arad)</li>
+            <li>BCR Avram Iancu ( Bulevardul Revolutiei nr. 97 parter, Arad, Arad)</li>
+            <li>BCR Ineu ( Strada Republicii nr.40, Ineu, Arad)</li>
+            <li>BCR Beius ( Strada Samuil Vulcan nr.11, Beius, Bihor)</li>
+            <li>BCR Bihor ( Strada D.Cantemir nr.2/c, Oradea, Bihor)</li>
+            <li>BCR Jibou ( Strada 1 Mai nr. 21/A, Jibou, Salaj)</li>
+            <li>BCR Carei ( Strada Dr.Stefan Vonhaz nr. 2, Carei, Satu Mare)</li>
+            <li>BCR Negresti Oas ( Strada Victoriei nr. 134, Negresti Oas, Satu Mare)</li>
+            <li>BCR Satu Mare ( Strada Horea, nr 8-10, Satu-Mare, Satu Mare, Satu Mare)</li>
+            <li>BCR Timis ( Calea Aradului nr. 11, Timisoara, Timis)</li>
+            <li>BCR Hateg ( Strada Unirii Bl.48 parter, Hateg, Hunedoara)</li>
+            <li>BCR Petrosani ( Strada Mihai Viteazu nr.4, Petrosani, Hunedoara)</li>
+            <li>BCR Brad ( Strada Republicii nr.3, Brad, Hunedoara)</li>
+            <li>BCR Hunedoara SJ ( Str. Maresal Averescu, nr 7, Deva, Judetul Hunedoara, Deva, Hunedoara)</li>
+            <li>BCR Hunedoara ( Str. George Enescu, nr. 6, Hunedoara, Hunedoara)</li>
+            <li>BCR Orastie ( Bulevardul Eroilor Bl. B1, Orastie, Hunedoara)</li>
+            <li>BCR Caransebes ( Strada Mihai Viteazu nr.44, Caransebes, Caras-Severin)</li>
+            <li>BCR Caras Severin ( Strada I.L.Caragiale nr.10, Resita, Caras-Severin)</li>
+            <li>BCR Piata Operei ( Strada Piata Victoriei, nr.8, Timisoara, Timis)</li>
+            <li>BCR Calea Sagului ( Calea Sagului nr. 70 Sc. A parter, Timisoara, Timis)</li>
+            <li>BCR Medias ( Strada Mihai Eminescu nr .2 A, Medias, Sibiu)</li>
+            <li>BCR Nicolae Balcescu ( Strada Piata Mare nr. 7, Sibiu, Sibiu, Sibiu)</li>
+            <li>BCR Aurel Vlaicu ( Bulevardul Mihai Viteazu nr. 1 Bl. V 3, Sibiu, Sibiu)</li>
+            <li>BCR Sibiu ( Strada Emil Cioran nr. 1, Sibiu, Sibiu)</li>
+            <li>BCR Codlea ( Strada Lunga nr.125, Codlea, Brasov)</li>
+            <li>BCR Fagaras ( Bulevardul Unirii 2B, Fagaras, Brasov)</li>
+            <li>BCR Victoria Brasov ( Strada 1 Decembrie 1918 nr.2, Victoria, Brasov)</li>
+            <li>BCR Brasov ( AFI Brasov, Blvd. 15 Noiembrie, nr. 78, etaj 2, Brasov, Brasov)</li>
+            <li>BCR Baraolt ( Strada Libertatii 2/A, Baraolt, Covasna)</li>
+            <li>BCR Covasna ( Strada Jozef Bem nr. 7, Sfantu Gheorghe, Covasna)</li>
+            <li>BCR Intorsura Buzaului ( Strada Mihai Viteazu Nr. 143 Bl. 6 Sc .C, Intorsura Buzaului, Covasna)</li>
+            <li>BCR Targu Secuiesc ( Strada Piata Gabor Aron nr.17, Targu Secuiesc, Covasna)</li>
+            <li>BCR Ludus ( Bulevardul 1 Decembrie nr. 43/B parter, Ludus, Mures)</li>
+            <li>BCR Mures ( Strada Gh.Doja nr. 1-3, Targu Mures, Mures)</li>
+            <li>BCR Tarnaveni ( Piata Trandafirilor nr. 16, Tarnaveni, Mures)</li>
+            <li>BCR Central ( Piata Trandafirilor nr.26, Targu Mures, Mures)</li>
+            <li>BCR Reghin ( Piata Petru Maior, nr. 43, Reghin, Mures)</li>
+            <li>BCR Sighisoara ( Strada 1 Mai nr. 12, Sighisoara, Mures)</li>
+            <li>BCR Tudor ( Bulevardul 1 Decembrie 1918 nr. 180, Targu Mures, Mures)</li>
+            <li>BCR Cristuru Secuiesc ( Strada Libertatii nr.44, Cristuru Secuiesc, Harghita)</li>
+            <li>BCR Gheorgheni ( Str. Nicolae Balcescu, nr. 7, parter, Gheorgheni, Harghita)</li>
+            <li>BCR Harghita ( Strada Kossuth Lajos nr.2, Miercurea Ciuc, Harghita)</li>
+            <li>BCR Odorheiu Secuiesc ( Strada Piata Libertatii nr.15, Odorheiu Secuiesc, Harghita)</li>
+            <li>BCR Toplita ( Strada N.Balcescu Bl.C parter, Toplita, Harghita)</li>
+            <li>BCR Calea Bucuresti ( Calea Bucuresti nr.90, Brasov, Brasov)</li>
+            <li>BCR Rasnov ( Piata Unirii nr.10, Rasnov, Brasov)</li>
+            <li>BCR Zarnesti ( Strada Mitropolit I.Metianu nr.8, Zarnesti, Brasov)</li>
+            <li>BCR Ghencea ( Strada Brasov nr. 25 sector 6, Bucuresti, Sector 6)</li>
+            <li>BCR Unirea ( Bulevardul Unirii nr.43-45 bl.E2-E3, Bucuresti, Sector 3)</li>
+            <li>BCR Berceni ( Strada Ion Iriceanu nr.20-22 bl.131-132, Bucuresti, Sector 4)</li>
+            <li>BCR Dr. Obregia ( Strada Dr.Al.Obregia nr.2B bl.2B parter, Bucuresti, Sector 4)</li>
+            <li>BCR Universitate ( Calea Victoriei nr. 46, Bucuresti, Sector 1)</li>
+            <li>BCR Sector 5 ( Bulevardul Tudor Vladimirescu nr.57 bl. T4, Bucuresti, Sector 5)</li>
+            <li>BCR Mosilor ( Calea Mosilor nr.290 bl.36, Bucuresti, Sector 2)</li>
+            <li>BCR Stefan cel Mare ( Soseaua St.cel Mare nr.60 bl.41 parter, Bucuresti, Sector 2)</li>
+            <li>BCR Pantelimon ( Soseaua Pantelimon nr.291 bl 9 parter, Bucuresti, Sector 2)</li>
+            <li>BCR Sector 2 ( Strada Ziduri Mosi nr.23, sector 2, Bucuresti, Bucuresti, Sector 2)</li>
+            <li>BCR Voluntari ( Soseaua Bucuresti Afumati nr.52, Voluntari, Ilfov)</li>
+            <li>BCR Sector 3 ( Soseaua Mihai Bravu nr.196 bl.200, Bucuresti, Sector 2)</li>
+            <li>BCR Sector 4 ( Bulevardul Unirii nr.63 bl.F4, Bucuresti, Sector 3)</li>
+            <li>BCR Th. Pallady ( Bulevardul Th. Pallady nr.7-9 bl.R5, Bucuresti, Sector 3)</li>
+            <li>BCR Sector 6 ( Bulevardul Vasile Milea, nr. 4E, sector 6, cladirea AFI Park 1, Bucuresti, Sector 6)</li>
+            <li>BCR Sector 1 ( Calea Victoriei nr.155 bl.D1 sector 1, Bucuresti, Sector 1)</li>
+            <li>BCR Bucurestii Noi ( Bulevardul Bucurestii Noi nr.170, Bucuresti, Sector 1)</li>
+            <li>BCR Otopeni ( Calea Bucuresti nr.82 bl.B2-2 parter jud. Ilfov, Otopeni, Ilfov)</li>
+          </ul>
         </div>
         <!-- </div> -->
+        <div class="in3">
+          <a href="#">Apasa aici pentru a alege de pe harta</a>
+        </div>
 
         <h3>In ce zi ne vizitezi ?</h3>
         <h6>Alege data si intervalul orar pentru vizita la BCR.</h6>
@@ -115,6 +317,7 @@
           <input type="checkbox" id="terms" name="terms" value="Term">
           <label for="terms"> Sunt de acord cu termenii si conditiile</label><br>
         </div>
+
 
         <button type="button" class="action-button previous previous_button">Back</button>
         <button id="continue1" type="button" class="next action-button" onclick="returnText()">Continue</button>
@@ -175,7 +378,27 @@
           <hr>
         </div>
 
-        <button type="button" class="action-button previous previous_button">Back</button>
+
+        <body onload="generate()">
+          <div id="user-input2" class="inline">
+            <input type="text" id="submit1" placeholder="Captcha code" />
+          </div>
+
+          <div class="inline" onclick="generate()">
+            <i class="fas fa-sync"></i>
+          </div>
+
+          <div id="image" class="inline" selectable="False">
+          </div>
+          <button type="button" id="submit2" onclick="printmsg()">Submit</button>
+
+          <p id="key"></p>
+
+        </body>
+
+
+
+        <!-- <button type="button" class="action-button previous previous_button">Back</button>  -->
 
         <div class="form-group fg_2">
           <script>
@@ -203,40 +426,27 @@
                 }
               });
             }
-            /*
-            $('#locatie').keyup(function () {
-              var searchField = $(this).val();
-              if (searchField === '') {
-                $('#filter-records').html('');
-                return;
-              }
 
-              var regex = new RegExp(searchField, "i");
-              var output = '<div class="row">';
-              var count = 1;
-              $.each(data, function (key, val) {
-                if ((val.employee_salary.search(regex) != -1) || (val.employee_name.search(regex) != -1)) {
-                  output += '<div class="col-md-6 well">';
-                  output += '<div class="col-md-3"><img class="img-responsive" src="' + val.profile_image + '" alt="' + val.employee_name + '" /></div>';
-                  output += '<div class="col-md-7">';
-                  output += '<h5>' + val.employee_name + '</h5>';
-                  output += '<p>' + val.employee_salary + '</p>'
-                  output += '</div>';
-                  output += '</div>';
-                  if (count % 2 == 0) {
-                    output += '</div><div class="row">'
-                  }
-                  count++;
-                }
-              });
-              output += '</div>';
-              $('#filter-records').html(output);
-            });
-            */
           </script>
         </div>
 
-        <a href="#" class="action-button"> Programeaza intalnirea </a>
+        <button id="prog" class="next action-button" type="button" "> Programeaza intalnirea
+        </button>
+        <script>
+          const cb1 = document.getElementById('key');
+          const btn2 = document.getElementById('submit2');
+          const button1 = document.getElementById('prog');
+          button1.disabled = true;
+
+          btn2.addEventListener(" click", stateHandle); function stateHandle() { // console.log(cb1.innerHTML) //
+            console.log(cb1.value) // console.log(cb1) if (cb1.innerHTML=="Matched" ) { console.log("en");
+            button1.disabled = false; //button is enabled } else { button1.disabled=true; //button remains disabled } }
+        </script>
+
+      </fieldset>
+
+      <fieldset>
+        <p>Intalnire programata cu succes.</p>
       </fieldset>
     </form>
   </section>
@@ -249,6 +459,7 @@
   <script src="static/maria_index/js/popper.min.js"></script>
   <script src="static/maria_index/js/jquery.nice-select.min.js"></script>
   <script src="static/maria_index/js/script.js"></script>
+  <script src="static/maria_index/js/captcha.js"></script>
 
 </body>
 

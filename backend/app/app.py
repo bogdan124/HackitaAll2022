@@ -1399,9 +1399,7 @@ def api_post_locations():
 def map_get():
     return render_template("index.html")
 
-@app.route("/map_carmen",methods=["GET"])
-def map_get():
-    return render_template("map_carmen_index.html")
+
 
 
 @app.route("/dashboard",methods=["GET"])
@@ -1423,6 +1421,10 @@ def sucursale():
 @app.route("/index",methods=["GET"])
 def index_first_page():
     return render_template("index_mar.html")
+
+@app.route("/main",methods=["GET"])
+def main_page():
+    return render_template("main.html")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
