@@ -1407,6 +1407,13 @@ def dashboard():
 def dashboard_map():
     return render_template("dashboard_map.html")
 
+@app.route("/dashboard_plots",methods=["GET"])
+def dashboard_plots():
+    return render_template("dashboard_plots.html")
+
+@app.route("/sucursale",methods=["GET"])
+def sucursale():
+    return render_template("sucursale.html")
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

@@ -21,11 +21,11 @@
                     <ul>
                         <li><a href="/dashboard"><i class="fa fa-home" aria-hidden="true"></i><span
                                     class="hidden-xs hidden-sm">Appoiment</span></a></li>
-                        <li class="active"><a href="/dashboard_map"><i class="fa fa-tasks" aria-hidden="true"></i><span
+                        <li><a href="/dashboard_map"><i class="fa fa-tasks" aria-hidden="true"></i><span
                                     class="hidden-xs hidden-sm">Map</span></a></li>
                         <li><a href="/dashboard_plots"><i class="fa fa-bar-chart" aria-hidden="true"></i><span
                                     class="hidden-xs hidden-sm">Statistics</span></a></li>
-                        <li><a href="/sucursale"><i class="fa fa-user" aria-hidden="true"></i><span
+                        <li class="active"><a href="/sucursale"><i class="fa fa-user" aria-hidden="true"></i><span
                                     class="hidden-xs hidden-sm">Sucursale</span></a></li>
                         <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span
                                     class="hidden-xs hidden-sm">Users</span></a></li>
@@ -132,7 +132,10 @@
 
                         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 move-down-list">
 
-                            <iframe src="http://172.29.0.3:5000/map"></iframe>
+                            <div id='myDiv'>
+                                <!-- Plotly chart will be drawn inside this DIV -->
+                            </div>
+
 
                         </div>
                     </div>
@@ -179,4 +182,19 @@
 
 
 
+</script>
+<script src='https://cdn.plot.ly/plotly-2.16.1.min.js'></script>
+<script>
+    var x = [];
+    for (var i = 0; i < 500; i++) {
+        x[i] = Math.random();
+    }
+
+    var trace = {
+        x: x,
+        type: 'histogram',
+        cumulative: { enabled: true }
+    };
+    var data = [trace];
+    Plotly.newPlot('myDiv', data);
 </script>
