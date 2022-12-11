@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Playing Around With LeafletJS </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <!-- Custom Styles -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        .heading {
+            font-family: monospace;
+            font-size: 40px;
+            text-align: center;
+            margin: 2.5vh 0;
+        }
+
+
+        #mymap {
+            width: 100vw;
+            height: 92vh;
+            /* margin: 0 5vw 2vh; */
+            /* border: 3px solid #888; */
+        }
+
+        .button-group {
+            justify-content: space-evenly !important;
+        }
+
+        .map-zoom-out-btn,
+        .search-btn {
+            background-color: #0072B5;
+            color: #FFF;
+            padding: 10px 35px;
+            border: none;
+            font-size: 17px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .select-dropdown {
+            display: inline-block;
+            margin: 0 15px 0 0;
+            padding: 10px 35px;
+            border: 1px solid #AAA;
+            font: inherit;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            appearance: none;
+            background: #FFF;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+            background-position: right 15px top 1em, right 10px top 1em;
+            background-size: 5px 5px, 5px 5px;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 17px;
+            padding-bottom: 8px;
+        }
+
+        .footer a {
+            padding: 0 5px 0 5px;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .flex-style {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="mymap"> </div>
+    <div class="button-group flex-style">
+        <!--<div class="component1">
+            <button class="map-zoom-out-btn"> Map Zoom Out </button>
+        </div>-->
+        <div class="component2">
+            <select class="select-dropdown" name="dropdown">
+                <option> Select any monument </option>
+            </select>
+            <button class="search-btn"> Search </button>
+        </div>
+    </div>
+
+
+    <script>const message = document.querySelector('#message');
+
+        // check if the Geolocation API is supported
+        if (!navigator.geolocation) {
+            message.textContent = `Your browser doesn't support Geolocation`;
+            message.classList.add('error');
+        }
+
+        // handle click event
+        const btn = document.querySelector('#show');
+        // btn.addEventListener('click', function () {
+        // get the current position
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        // });
+
+        var latitude = 45.9432;
+        var longitude = 24.9668;
+
+        function onSuccess(position) {
+            console.log("succes");
+            const { latitude1, longitude1 } = position.coords;
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+        }
+
+        function onError() {
+            message.classList.add('error');
+            console.log("error");
+            latitude = 45.9432
+            longitude = 24.9668
+        }
+
+        const myArr1 = [latitude, longitude];
+        console.log(myArr1)
+
+        ///////////////////////////
+
+        let map = L.map('mymap').setView([latitude, longitude], 7);
+        let ourData = [];
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors',
+            maxZoom: 20,
+            minZoom: 2,
+            tileSize: 512,
+            zoomOffset: -1
+        }).addTo(map);
+
+        let iconOption = {
+            iconUrl: 'static/assets/location-marker.svg',
+            iconSize: [30, 30]
+        };
+        let ourCustomIcon = L.icon(iconOption);
+
+        fetch("http://172.29.0.3:5000/api/locations/")
+            .then(response => response.json())
+            .then(data => {
+                ourData = data;
+                for (let i = 0; i < data.length; i++) {
+                    let option = document.createElement("option");
+                    option.value = i + 1;
+                    option.text = data[i].title;
+                    document.querySelector(".select-dropdown").appendChild(option);
+
+                    let marker = L.marker([data[i].latitude, data[i].longitude], { icon: ourCustomIcon }).bindPopup(`<h3> ${data[i].title} </h3> <p> ${data[i].description} </p>`).on('click', () => {
+                        map.flyTo([data[i].latitude, data[i].longitude], data[i].zoomLevel);
+                    }).addTo(map);
+                }
+            })
+            .catch(error => alert(error))
+
+
+        document.querySelector(".map-zoom-out-btn").addEventListener('click', () => {
+            map.flyTo([latitude, longitude], 14);
+        });
+
+        document.querySelector(".search-btn").addEventListener('click', () => {
+            let select = document.querySelector(".select-dropdown");
+            let value = select.options[select.selectedIndex].value;
+            map.flyTo([ourData[value - 1].latitude, ourData[value - 1].longitude], ourData[value - 1].zoomLevel);
+        });
+    </script>
+</body>
+
+</html>
