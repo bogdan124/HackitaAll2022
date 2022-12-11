@@ -1,122 +1,4 @@
-from typing import List, Dict
-from flask import Flask, request, jsonify, url_for,render_template
-import mysql.connector
-import json
-import os
- 
-
-
-
-app = Flask(__name__)
-
-
-def test_table(subject, locatie, data, prenume, nume, cnp, email, telefon, comment ) -> List[Dict]:
-    config = {
-        'user': 'root',
-        'password': 'root',
-        'host': 'db',
-        'port': '3306',
-        'database': 'devopsroles'
-    }
-    connection = mysql.connector.connect(**config)
-    cursor = connection.cursor()
-    data=cursor.execute("INSERT INTO appointment(subject, locatie, data, prenume, nume, cnp, email, telefon, comment ) VALUES('"+subject+"', '"+locatie+"','"+data+"', '"+prenume+"','"+nume+"', '"+cnp+"','"+email+"', '"+telefon+"','"+comment+"');")
-    ##commit
-    connection.commit()
-    cursor.close()
-    connection.close()
-    return data
-
-
-def data_testt():
-    config = {
-        'user': 'root',
-        'password': 'root',
-        'host': 'db',
-        'port': '3306',
-        'database': 'devopsroles'
-    }
-    connection = mysql.connector.connect(**config)
-    ##select from appointments
-    cursor = connection.cursor()
-    cursor.execute("""SELECT * FROM appointment""")
-    data = cursor.fetchall()
-    cursor.close()
-    connection.close()
-    return data
-
-
-@app.route('/',methods=["GET"])
-def index() -> str:
-    return json.dumps({'data': data_testt()})
-
-##create an api route that takes the object variable writen up and is a post reuqest
-@app.route('/api/add', methods=['get'])
-def api_post():
-    ##check for errors
-    if request.method == 'GET':
-        object = request.args
-        if 'prenume' not in object or 'nume' not in object or 'cnp' not in object :
-            return json.dumps({'error': 'Please fill in all the fields.'})
-        if 'email' not in object or 'telefon' not in object or 'comment' not in object:
-            return json.dumps({'error': 'Please fill in all the fields.'})
-        if 'subject' not in object or 'locatie' not in object or 'data' not in object :
-            return json.dumps({'error': 'Please fill in all the fields.'})
-        else:
-            subject = object['subject']
-            locatie = object['locatie']
-            data = object['data']
-            prenume = object['prenume']
-            nume = object['nume']
-            cnp = object['cnp']
-            email = object['email']
-            telefon = object['telefon']
-            comment = object['comment']
-            test_table(subject, locatie, data, prenume, nume, cnp,
-            email, telefon, comment)
-            
-            return jsonify({
-                "subject": subject,
-                "locatie": locatie,
-                "data": data,
-                "prenume": prenume,
-                "nume": nume,
-                "cnp": cnp,
-                "email": email,
-                "telefon": telefon,
-                "comment": comment
-            })
-
-
-##endpoint that is getting a post request with a tag color and is created a color pallet
-@app.route('/api/colors/', methods=['get'])
-def api_post_color():
-    ##get data from get url parameters
-    object = request.args  
-    ##if you get no parameters return null
- 
-    if not object:
-        return jsonify({
-            "color": "null"
-        })
-    # generate 36 distinct pastel colours
-    colors = distinctipy.get_colors(int(object['color_number']), 
-                                    pastel_factor=float(object['pastel_factor']),
-                                    n_attempts=int(object['attempts']))
-    ##get all rgb and add them to a list of rgb colors
-    rgb_list = []
-    for i in range(0,len(colors)):
-        rgb_list.append(distinctipy.get_rgb256(colors[i]))
-    ##return rgb color list
-    return jsonify({
-        "rgbs": rgb_list
-    })
-
-
-##add location data.json from static
-@app.route('/api/locations/', methods=['get'])
-def api_post_locations():
-    STOREA_DATA = [
+[
 	{
 		"latitude": 44.1993965,
 		"longitude": 27.3188548,
@@ -391,15 +273,15 @@ def api_post_locations():
 		"zoomLevel": 16
 	},
 	{
-		"latitude": 47.21130682800195,
-		"longitude":  27.27246925232646,
+		"latitude": 47.2103208,
+		"longitude": 27.2081254,
 		"title": "BCR Podu Iloaiei",
 		"description": "Strada Nationala Bl.14 parter, Comuna Podu Iloaiei, Iasi",
 		"zoomLevel": 16
 	},
 	{
-		"latitude": 47.163014759501934, 
-		"longitude":27.581830751501673,
+		"latitude": 47.2111572,
+		"longitude": 27.2679417,
 		"title": "BCR A. I. Cuza",
 		"description": "Bulevardul Stefan cel Mare si Sfant nr.8 Bl.A, Iasi, Iasi",
 		"zoomLevel": 16
@@ -475,8 +357,8 @@ def api_post_locations():
 		"zoomLevel": 16 
 	},
 	{
-		"latitude": 46.91155782904196, 
-		"longitude": 26.089061584082764,
+		"latitude": 46.9114735,
+		"longitude": 26.0868407,
 		"title": "BCR Bicaz",
 		"description": "Strada Barajului nr. 2A, Bicaz, Neamt",
 		"zoomLevel": 16 
@@ -503,8 +385,8 @@ def api_post_locations():
 		"zoomLevel": 16
 	},
 	{
-		"latitude": 44.89456111302473, 
-		"longitude": 28.72530119303132,
+		"latitude": 44.8945498,
+		"longitude": 28.7231447,
 		"title": "BCR Babadag",
 		"description": "Strada Republicii nr.88 parter, Babadag, Tulcea",
 		"zoomLevel": 16 
@@ -524,8 +406,8 @@ def api_post_locations():
         "zoomLevel": 16
     },
     {
-        "latitude": 45.172846495420146, 
-        "longitude": 28.79786949750701,
+        "latitude": 45.0409691,
+        "longitude": 28.3847586,
         "title": "BCR Tulcea",
         "description": "Strada Toamnei nr. 2, Tulcea, Tulcea",
         "zoomLevel": 16
@@ -657,8 +539,8 @@ def api_post_locations():
         "zoomLevel": 16 
     },
     {
-        "latitude": 45.84718418079525, 
-        "longitude": 27.42998076853861,
+        "latitude": 45.8469114,
+        "longitude": 27.4255405,
         "title": "BCR Tecuci",
         "description": "Strada 1 Decembrie 1918 nr.55, Tecuci, Galati",
         "zoomLevel": 16 
@@ -867,8 +749,8 @@ def api_post_locations():
         "zoomLevel": 16 
     },
     {
-        "latitude": 45.026329318626225, 
-        "longitude": 23.267919691026318,
+        "latitude": 45.026026,
+        "longitude": 22.1477157,
         "title": "BCR Victoria Gorj",
         "description": "Strada Victoriei Bl. 194 parter, Targu Jiu, Gorj",
         "zoomLevel": 16 
@@ -909,8 +791,8 @@ def api_post_locations():
         "zoomLevel": 16 
     },
     {
-        "latitude": 44.34570046050171, 
-        "longitude": 24.118090886468345,
+        "latitude": 44.7201575,
+        "longitude": 21.8835068,
         "title": "BCR Bals",
         "description": "Strada N.Balcescu nr. 186 A, Bals, Olt",
         "zoomLevel": 16 
@@ -944,8 +826,8 @@ def api_post_locations():
         "zoomLevel": 16 
     },
     {
-        "latitude": 46.17186075955086,
-        "longitude":  21.316231529928103,
+        "latitude": 44.8977007,
+        "longitude": 23.0064711,
         "title": "BCR Avram Iancu",
         "description": "Bulevardul Revolutiei nr. 97 parter, Arad, Arad",
         "zoomLevel": 16 
@@ -1091,8 +973,8 @@ def api_post_locations():
         "zoomLevel": 16 
     },
     {
-        "latitude": 45.782586064470195, 
-        "longitude": 24.148857738006903,
+        "latitude": 45.7853749,
+        "longitude": 24.1315441,
         "title": "BCR Aurel Vlaicu",
         "description": "Bulevardul Mihai Viteazu nr. 1 Bl. V 3, Sibiu, Sibiu",
         "zoomLevel": 16 
@@ -1112,8 +994,8 @@ def api_post_locations():
         "zoomLevel": 16 
     },
     {
-        "latitude": 45.84357305245107, 
-        "longitude": 24.969826620675864,
+        "latitude": 45.7011591,
+        "longitude": 25.3777739,
         "title": "BCR Fagaras",
         "description": "Bulevardul Unirii 2B, Fagaras, Brasov",
         "zoomLevel": 16 
@@ -1161,8 +1043,8 @@ def api_post_locations():
         "zoomLevel": 16 
     },
     {
-        "latitude": 46.47126007308539, 
-        "longitude": 24.095459255229347,
+        "latitude": 46.4711234,
+        "longitude": 24.0932491,
         "title": "BCR Ludus",
         "description": "Bulevardul 1 Decembrie nr. 43/B parter, Ludus, Mures",
         "zoomLevel": 16 
@@ -1391,22 +1273,4 @@ def api_post_locations():
         "description": "Calea Bucuresti nr.82 bl.B2-2 parter jud. Ilfov, Otopeni, Ilfov",
         "zoomLevel": 16 
     }
-    ]
-    ##get location-data.json from static
-    return jsonify(STOREA_DATA)
-  
-@app.route("/map",methods=["GET"])
-def map_get():
-    return render_template("index.html")
-
-@app.route("/dashboard",methods=["GET"])
-def dashboard():
-    return render_template("dashboard.html")
-
-@app.route("/dashboard_map",methods=["GET"])
-def dashboard_map():
-    return render_template("dashboard_map.html")
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+]
