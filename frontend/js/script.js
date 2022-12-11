@@ -107,6 +107,7 @@
     }; 
     //* Select js
     function nice_Select(){
+       //console.log($('select'))
         if ( $('.product_select').length ){ 
             $('select').niceSelect();
         };
