@@ -116,7 +116,7 @@ def api_post_color():
 ##add location data.json from static
 @app.route('/api/locations/', methods=['get'])
 def api_post_locations():
-    STOREA_DATA = [
+    STOREA_DATA =[
 	{
 		"latitude": 44.1993965,
 		"longitude": 27.3188548,
@@ -1217,8 +1217,8 @@ def api_post_locations():
         "zoomLevel": 16 
     },
     {
-        "latitude":46.0558479,
-        "longitude": 23.4788893,
+        "latitude":46.723068050340025, 
+        "longitude": 25.596981156701844,
         "title": "BCR Gheorgheni",
         "description": "Str. Nicolae Balcescu, nr. 7, parter, Gheorgheni, Harghita",
         "zoomLevel": 16 
@@ -1399,7 +1399,9 @@ def api_post_locations():
 def map_get():
     return render_template("index.html")
 
-
+@app.route("/map_second",methods=["GET"])
+def map_get_second():
+    return render_template("map_carmen_index.html")
 
 
 @app.route("/dashboard",methods=["GET"])
@@ -1425,6 +1427,37 @@ def index_first_page():
 @app.route("/main",methods=["GET"])
 def main_page():
     return render_template("main.html")
+
+@app.route("/chatbot",methods=["GET"])
+def chatbot():
+    return render_template("chatbot.html")
+
+@app.route("/chatbot_responses",methods=["GET"])
+def chatbot_responses():
+   
+    query = request.args.get("message") 
+   
+    let_data = [["how I create an appointment?",
+        "Go to the home page and click on the schedule programati intalnirea."],
+        ["how do I make an appointment in a branch?",
+    "Go to the home page and click on the schedule programati intalnirea."],
+    ["How I can create a credit bcr?",
+    "We provide you with a fast online loan to make your wishes come true. Set up your credit with just a few taps on the screen and receive the loan online. You simply and quickly choose the amount you want to borrow and the crediting period."],
+        ["How many clients do you have ?",
+    "At the moment we have 3.1 million customers, 7,237 employees and 509 branches."]]
+    add=[]
+    for i in let_data:
+        if i[0].find(query)!=-1:
+            add.append(i[1])
+   
+    
+    exit_conditions = (":q", "quit", "exit")
+
+    if query in exit_conditions:
+        return {"data":"error"}
+    else:
+        return {"data":add}
+           
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
